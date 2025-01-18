@@ -19,6 +19,7 @@ def handle_client(client_connection, client_address):
         with open(file_request, 'rb') as file:
             for data_chunk in file:
                 client_connection.sendall(data_chunk)
+            file.close()
     except FileNotFoundError:
         client_connection.send(b"File not found")  # byte string
 
