@@ -10,10 +10,11 @@ file_request = 'test.txt'
 client_socket.send(file_request.encode())
 
 # Receive data
-with open('downloaded_file.txt', 'wb') as file:
+with open('downloaded_file.txt', 'w') as file:
     while True:
         data = client_socket.recv(1024)
         if not data:
             break
-        file.write(data)
+        file.write(data.decode())
+        file.close()
 print('File successfully received!')
